@@ -130,7 +130,7 @@ jobs:
         run: echo VERSION=$(make info | awk '$1=="Version:"{print $2}') | tee -a $GITHUB_ENV | tee -a $GITHUB_OUTPUT
 
       - name: Calculate new short version number
-        run: echo SHORT_VERSION=${VERSION%-*} | tee -a $GITHUB_ENV
+        run: echo SHORT_VERSION=${VERSION%%-*} | tee -a $GITHUB_ENV
 
       - name: Tag multiarch images on DockerHub
         run: |
@@ -138,6 +138,7 @@ jobs:
           docker manifest push ${DOCKER_REPO}:${VERSION}
           docker manifest create ${DOCKER_REPO}:${SHORT_VERSION} ${DOCKER_REPO}:${VERSION}-linux-arm64 ${DOCKER_REPO}:${VERSION}-linux-amd64
           docker manifest push ${DOCKER_REPO}:${SHORT_VERSION}
+          docker manifest create ${DOCKER_REPO}:latest ${DOCKER_REPO}:${VERSION}-linux-arm64 ${DOCKER_REPO}:${VERSION}-linux-amd64
           docker manifest push ${DOCKER_REPO}:latest
 
       - name: Tag multiarch images on Amazon ECR Public
@@ -146,4 +147,5 @@ jobs:
           docker manifest push ${PUBLIC_ECR_REPO}:${VERSION}
           docker manifest create ${PUBLIC_ECR_REPO}:${SHORT_VERSION} ${PUBLIC_ECR_REPO}:${VERSION}-linux-arm64 ${PUBLIC_ECR_REPO}:${VERSION}-linux-amd64
           docker manifest push ${PUBLIC_ECR_REPO}:${SHORT_VERSION}
+          docker manifest create ${PUBLIC_ECR_REPO}:latest ${PUBLIC_ECR_REPO}:${VERSION}-linux-arm64 ${PUBLIC_ECR_REPO}:${VERSION}-linux-amd64
           docker manifest push ${PUBLIC_ECR_REPO}:latest
