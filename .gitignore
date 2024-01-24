@@ -1,0 +1,7 @@
+*~
+*.tar
+?.*
+
+.vscode
+
+# not in .dockerignore

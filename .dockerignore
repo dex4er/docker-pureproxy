@@ -1,0 +1,11 @@
+*~
+*.tar
+?.*
+
+.vscode
+
+# not in .gitignore
+/.git*
+/.hadolint.yaml
+/.markdownlint.yaml
+/.trunk/

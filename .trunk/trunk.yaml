@@ -1,0 +1,34 @@
+version: 0.1
+cli:
+  version: 1.19.0
+lint:
+  disabled:
+    - checkov
+    - terrascan
+    - trivy
+    - trufflehog
+  enabled:
+    - actionlint@1.6.26
+    - dotenv-linter@3.3.0
+    - git-diff-check@SYSTEM
+    - gitleaks@8.18.1
+    - hadolint@2.12.0
+    - markdownlint@0.38.0
+    - prettier@3.2.4
+    - yamllint@1.33.0
+actions:
+  enabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-fmt-pre-commit
+    - trunk-upgrade-available
+plugins:
+  sources:
+    - id: trunk
+      ref: v1.4.2
+      uri: https://github.com/trunk-io/plugins
+runtimes:
+  enabled:
+    - go@1.21.0
+    - node@18.12.1
+    - python@3.10.8
