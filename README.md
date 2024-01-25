@@ -12,7 +12,7 @@ HTTP proxy server.
 
 ## Tags
 
-- `X.Y.Z-alpine-X.Y.Z-perl-X.Y.Z-rN`, `X.Y.Z`, `latest`.
+- `X.Y.Z-alpine-X.Y.Z-perl-X.Y.Z-rN-PLATFORM`, `X.Y.Z-alpine-X.Y.Z-perl-X.Y.Z-rN`, `X.Y.Z`, `latest`.
 
 ## Usage
 
